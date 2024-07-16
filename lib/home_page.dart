@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'journal_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -12,8 +13,8 @@ class HomePage extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
+        backgroundColor: Color(0xFFA3D1E6),
+        elevation: 1,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -28,18 +29,30 @@ class HomePage extends StatelessWidget {
                     iconPath: 'assets/photos/journaling.png',
                     text: 'Journaling',
                     color: Color(0xFF1A73E8),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => JournalPage()),
+                      );
+                    },
                   ),
-                  SizedBox(height: 35),
+                  SizedBox(height: 40),
                   HomeButton(
                     iconPath: 'assets/photos/mood_tracking.png',
                     text: 'Mood Tracking',
                     color: Color(0xFF1A73E8),
+                    onPressed: () {
+                      // Add navigation to Mood Tracking page
+                    },
                   ),
-                  SizedBox(height: 35),
+                  SizedBox(height: 40),
                   HomeButton(
                     iconPath: 'assets/photos/coping_tips.png',
                     text: 'Coping Tips',
                     color: Color(0xFF1A73E8),
+                    onPressed: () {
+                      // Add navigation to Coping Tips page
+                    },
                   ),
                 ],
               ),
@@ -55,17 +68,21 @@ class HomeButton extends StatelessWidget {
   final String iconPath;
   final String text;
   final Color color;
+  final VoidCallback onPressed;
 
-  HomeButton({required this.iconPath, required this.text, required this.color});
+  HomeButton({
+    required this.iconPath,
+    required this.text,
+    required this.color,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {
-          // Define what happens when the button is pressed
-        },
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
           padding: EdgeInsets.symmetric(vertical: 20),

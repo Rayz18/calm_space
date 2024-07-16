@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
+import 'journal_page.dart';
+import 'add_journal_page.dart';
 
 void main() {
   runApp(CalmSpaceApp());
@@ -11,6 +13,16 @@ class CalmSpaceApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
+      routes: {
+        '/home': (context) => HomePage(),
+        '/journal': (context) => JournalPage(),
+        '/add_journal': (context) => AddJournalPage(
+              onSubmit: (title, story) {
+                // Handle submission of title and story here
+                print('Submitted title: $title, story: $story');
+              },
+            ),
+      },
     );
   }
 }
@@ -76,7 +88,7 @@ class SplashScreen extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF68BBE3), // Button background color
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 80, vertical: 10),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
