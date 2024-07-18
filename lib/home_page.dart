@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'journal_page.dart';
+import 'mood_tracker_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -33,6 +34,18 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => JournalPage()),
+                      );
+                    },
+                  ),
+                   SizedBox(height: 40),
+                  HomeButton(
+                    iconPath: 'assets/photos/mood_tracking.png',
+                    text: 'Mood Tracking',
+                    color: Color(0xFF1A73E8),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MoodTrackingPage()), // Navigate to MoodTrackingPage
                       );
                     },
                   ),

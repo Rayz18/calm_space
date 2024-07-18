@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.0.15
+  table_calendar: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -24,6 +25,14 @@ flutter:
     - assets/photos/journaling.png
     - assets/photos/mood_tracking.png
     - assets/photos/coping_tips.png
+    - assets/photos/happy.png
+    - assets/photos/angry.png
+    - assets/photos/sad.png
+    - assets/photos/disappointed.png
+    - assets/photos/scared.png
+    - assets/photos/worried.png
+    - assets/photos/frustrated.png
+    - assets/photos/unknown.png
 
   fonts:
     - family: Cursive

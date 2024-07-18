@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'journal_page.dart';
 import 'add_journal_page.dart';
+import 'mood_tracker_page.dart';
+
 
 void main() {
   runApp(CalmSpaceApp());
@@ -22,6 +24,7 @@ class CalmSpaceApp extends StatelessWidget {
                 print('Submitted title: $title, story: $story');
               },
             ),
+            '/mood_tracking': (context) => MoodTrackingPage(),  // Add route for mood tracking page
       },
     );
   }
