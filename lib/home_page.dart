@@ -38,26 +38,21 @@ class HomePage extends StatelessWidget {
                     },
                   ),
                    SizedBox(height: 40),
-                  HomeButton(
+                 
+                   HomeButton(
                     iconPath: 'assets/photos/mood_tracking.png',
                     text: 'Mood Tracking',
                     color: Color(0xFF1A73E8),
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MoodTrackingPage()), // Navigate to MoodTrackingPage
+                        MaterialPageRoute(builder: (context) => MoodTrackingPage(moodRecords: {},)), // Navigate to MoodTrackingPage
                       );
                     },
                   ),
-                  SizedBox(height: 40),
-                  HomeButton(
-                    iconPath: 'assets/photos/mood_tracking.png',
-                    text: 'Mood Tracking',
-                    color: Color(0xFF1A73E8),
-                    onPressed: () {
-                      // Add navigation to Mood Tracking page
-                    },
-                  ),
+                   
+                 
+                  
                   SizedBox(height: 40),
                   HomeButton(
                     iconPath: 'assets/photos/coping_tips.png',
