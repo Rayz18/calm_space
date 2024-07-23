@@ -3,46 +3,56 @@ import 'home_page.dart';
 import 'journal_page.dart';
 import 'add_journal_page.dart';
 import 'mood_tracker_page.dart';
-
+import 'mood_calendar_page.dart';
 
 void main() {
   runApp(CalmSpaceApp());
 }
 
 class CalmSpaceApp extends StatelessWidget {
+  final Map<DateTime, String> moodRecords = {};
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: SplashScreen(moodRecords: moodRecords),
       routes: {
         '/home': (context) => HomePage(),
         '/journal': (context) => JournalPage(),
         '/add_journal': (context) => AddJournalPage(
               onSubmit: (title, story) {
-                // Handle submission of title and story here
                 print('Submitted title: $title, story: $story');
               },
             ),
-            '/mood_tracking': (context) => MoodTrackingPage(),  // Add route for mood tracking page
+      
+        '/mood_tracking': (context) => MoodTrackingPage(moodRecords: moodRecords),
+        '/mood_calendar': (context) => MoodCalendarPage(
+          moodRecords: moodRecords,
+          selectedDate: DateTime.now(), // Provide a valid DateTime object here
+        ),
       },
     );
   }
 }
 
 class SplashScreen extends StatelessWidget {
+  final Map<DateTime, String> moodRecords;
+
+  SplashScreen({required this.moodRecords});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Color(0xFFA3D1E6), // Light blue background color
+          color: Color(0xFFA3D1E6),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: 50), // Space at the top
+            SizedBox(height: 50),
             Text(
               'Calm Space',
               style: TextStyle(
@@ -59,16 +69,16 @@ class SplashScreen extends StatelessWidget {
                 color: Colors.black54,
               ),
             ),
-            SizedBox(height: 40), // Space between text and image
+            SizedBox(height: 40),
             ClipOval(
               child: Image.asset(
-                'assets/photos/calm.png', // Replace with your image asset
+                'assets/photos/calm.png',
                 height: 150,
                 width: 175,
-                fit: BoxFit.fill, // Ensure the image fits within the circle
+                fit: BoxFit.fill,
               ),
             ),
-            SizedBox(height: 35), // Space between image and quote
+            SizedBox(height: 35),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Text(
@@ -81,16 +91,18 @@ class SplashScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 30), // Space between quote and button
+            SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ),
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF68BBE3), // Button background color
+                backgroundColor: Color(0xFF68BBE3),
                 padding: EdgeInsets.symmetric(horizontal: 80, vertical: 10),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -104,7 +116,7 @@ class SplashScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 50), // Space at the bottom
+            SizedBox(height: 50),
           ],
         ),
       ),
