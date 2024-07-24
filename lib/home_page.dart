@@ -10,7 +10,8 @@ class HomePage extends StatelessWidget {
         title: Text(
           'Calm Space, Calm Mind',
           style: TextStyle(
-            fontFamily: 'AppleGaramond',
+            fontFamily: 'Sans',
+            fontSize: 18,
           ),
         ),
         centerTitle: true,
@@ -37,22 +38,21 @@ class HomePage extends StatelessWidget {
                       );
                     },
                   ),
-                   SizedBox(height: 40),
-                 
-                   HomeButton(
+                  SizedBox(height: 40),
+                  HomeButton(
                     iconPath: 'assets/photos/mood_tracking.png',
                     text: 'Mood Tracking',
                     color: Color(0xFF1A73E8),
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MoodTrackingPage(moodRecords: {},)), // Navigate to MoodTrackingPage
+                        MaterialPageRoute(
+                            builder: (context) => MoodTrackingPage(
+                                  moodRecords: {},
+                                )), // Navigate to MoodTrackingPage
                       );
                     },
                   ),
-                   
-                 
-                  
                   SizedBox(height: 40),
                   HomeButton(
                     iconPath: 'assets/photos/coping_tips.png',
@@ -110,8 +110,8 @@ class HomeButton extends StatelessWidget {
             Text(
               text,
               style: TextStyle(
-                fontFamily: 'AppleGaramond',
-                fontSize: 27,
+                fontFamily: 'Sans',
+                fontSize: 23,
                 color: Colors.white,
               ),
             ),

@@ -15,7 +15,8 @@ class AddJournalPage extends StatelessWidget {
         title: Text(
           'Add New Story',
           style: TextStyle(
-            fontFamily: 'AppleGaramond',
+            fontFamily: 'Sans',
+            fontSize: 19,
           ),
         ),
         backgroundColor: Color(0xFFA3D1E6),
@@ -30,11 +31,11 @@ class AddJournalPage extends StatelessWidget {
               decoration: InputDecoration(
                 labelText: 'Title',
                 labelStyle: TextStyle(
-                  fontFamily: 'AppleGaramond',
+                  fontFamily: 'Sans',
                 ),
               ),
               style: TextStyle(
-                fontFamily: 'AppleGaramond',
+                fontFamily: 'Sans',
               ),
             ),
             SizedBox(height: 10),
@@ -43,12 +44,12 @@ class AddJournalPage extends StatelessWidget {
               decoration: InputDecoration(
                 labelText: 'Story',
                 labelStyle: TextStyle(
-                  fontFamily: 'AppleGaramond',
+                  fontFamily: 'Sans',
                 ),
               ),
               maxLines: 10,
               style: TextStyle(
-                fontFamily: 'AppleGaramond',
+                fontFamily: 'Sans',
               ),
             ),
             SizedBox(height: 50),
@@ -67,7 +68,7 @@ class AddJournalPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.black,
-                  fontFamily: 'AppleGaramond',
+                  fontFamily: 'Sans',
                 ),
               ),
             ),
