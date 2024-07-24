@@ -1,6 +1,8 @@
+import 'package:calm_space/main.dart';
 import 'package:flutter/material.dart';
 import 'journal_page.dart';
 import 'mood_tracker_page.dart';
+import 'coping_tips.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -13,6 +15,15 @@ class HomePage extends StatelessWidget {
             fontFamily: 'Sans',
             fontSize: 18,
           ),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CalmSpaceApp()),
+                      );
+          },
         ),
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 233, 222, 236),

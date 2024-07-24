@@ -1,3 +1,4 @@
+import 'package:calm_space/coping_tips.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'journal_page.dart';
