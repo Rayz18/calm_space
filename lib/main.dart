@@ -1,3 +1,4 @@
+import 'package:calm_space/coping_tips.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'journal_page.dart';
@@ -31,6 +32,7 @@ class CalmSpaceApp extends StatelessWidget {
           moodRecords: moodRecords,
           selectedDate: DateTime.now(), // Provide a valid DateTime object here
         ),
+        '/coping_tips': (context) => CopingTipsPage(),
       },
     );
   }
