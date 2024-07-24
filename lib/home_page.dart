@@ -15,57 +15,70 @@ class HomePage extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xFFA3D1E6),
+        backgroundColor: Color.fromARGB(255, 233, 222, 236),
         elevation: 1,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  HomeButton(
-                    iconPath: 'assets/photos/journaling.png',
-                    text: 'Journaling',
-                    color: Color(0xFF1A73E8),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => JournalPage()),
-                      );
-                    },
-                  ),
-                  SizedBox(height: 40),
-                  HomeButton(
-                    iconPath: 'assets/photos/mood_tracking.png',
-                    text: 'Mood Tracking',
-                    color: Color(0xFF1A73E8),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MoodTrackingPage(
-                                  moodRecords: {},
-                                )), // Navigate to MoodTrackingPage
-                      );
-                    },
-                  ),
-                  SizedBox(height: 40),
-                  HomeButton(
-                    iconPath: 'assets/photos/coping_tips.png',
-                    text: 'Coping Tips',
-                    color: Color(0xFF1A73E8),
-                    onPressed: () {
-                      // Add navigation to Coping Tips page
-                    },
-                  ),
-                ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: RadialGradient(
+            center: Alignment.center,
+            radius: 1.80,
+            colors: [
+              Color(0xFFFADADD), // Pastel Pink
+              Color(0xF68AE5F5), // Pastel Blue
+            ],
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    HomeButton(
+                      iconPath: 'assets/photos/journaling.png',
+                      text: 'Journaling',
+                      color: Color(0xDFDAB8F1),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => JournalPage()),
+                        );
+                      },
+                    ),
+                    SizedBox(height: 40),
+                    HomeButton(
+                      iconPath: 'assets/photos/mood_tracking.png',
+                      text: 'Mood Tracking',
+                      color: Color(0xDFDAB8F1),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MoodTrackingPage(
+                                    moodRecords: {},
+                                  )), // Navigate to MoodTrackingPage
+                        );
+                      },
+                    ),
+                    SizedBox(height: 40),
+                    HomeButton(
+                      iconPath: 'assets/photos/coping_tips.png',
+                      text: 'Coping Tips',
+                      color: Color(0xDFDAB8F1),
+                      onPressed: () {
+                        // Add navigation to Coping Tips page
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
