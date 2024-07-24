@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'mood_calendar_page.dart';
-import 'home_page.dart';
 
 class MoodTrackingPage extends StatefulWidget {
   final Map<DateTime, String> moodRecords;
@@ -127,7 +126,6 @@ class _MoodTrackingPageState extends State<MoodTrackingPage> {
                 onPressed: _saveMood,
                 child: Text('Save'),
               ),
-              
             ],
           ),
         ),
@@ -165,4 +163,3 @@ class _MoodTrackingPageState extends State<MoodTrackingPage> {
     );
   }
 }
-

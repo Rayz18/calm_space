@@ -42,3 +42,6 @@ flutter:
     - family: AppleGaramond
       fonts:
         - asset: assets/fonts/AppleGaramond.ttf
+    - family: Sans
+      fonts:
+        - asset: assets/fonts/Sans.ttf

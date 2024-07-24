@@ -111,7 +111,7 @@ class HomeButton extends StatelessWidget {
               text,
               style: TextStyle(
                 fontFamily: 'Sans',
-                fontSize: 23,
+                fontSize: 20,
                 color: Colors.white,
               ),
             ),
