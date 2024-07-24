@@ -59,7 +59,8 @@ class _JournalPageState extends State<JournalPage> {
         title: Text(
           'Journaling',
           style: TextStyle(
-            fontFamily: 'AppleGaramond',
+            fontFamily: 'Sans',
+            fontSize: 19,
           ),
         ),
         centerTitle: true,
@@ -74,7 +75,7 @@ class _JournalPageState extends State<JournalPage> {
                 child: Text(
                   'No Available Story yet',
                   style: TextStyle(
-                    fontFamily: 'AppleGaramond',
+                    fontFamily: 'Sans',
                     fontSize: 18,
                     color: Colors.black,
                   ),
@@ -89,7 +90,7 @@ class _JournalPageState extends State<JournalPage> {
                       title: Text(
                         _stories[index]['title'] ?? '',
                         style: TextStyle(
-                          fontFamily: 'AppleGaramond',
+                          fontFamily: 'Sans',
                           fontSize: 16,
                           color: Colors.black,
                         ),
@@ -97,7 +98,7 @@ class _JournalPageState extends State<JournalPage> {
                       subtitle: Text(
                         _stories[index]['date'] ?? '',
                         style: TextStyle(
-                          fontFamily: 'AppleGaramond',
+                          fontFamily: 'Sans',
                           fontSize: 14,
                           color: Colors.grey,
                         ),
@@ -114,7 +115,7 @@ class _JournalPageState extends State<JournalPage> {
                               title: Text(
                                 _stories[index]['title'] ?? '',
                                 style: TextStyle(
-                                  fontFamily: 'AppleGaramond',
+                                  fontFamily: 'Sans',
                                   fontSize: 18,
                                   color: Colors.black,
                                 ),
@@ -122,7 +123,7 @@ class _JournalPageState extends State<JournalPage> {
                               content: Text(
                                 _stories[index]['story'] ?? '',
                                 style: TextStyle(
-                                  fontFamily: 'AppleGaramond',
+                                  fontFamily: 'Sans',
                                   fontSize: 16,
                                   color: Colors.black,
                                 ),
@@ -132,7 +133,7 @@ class _JournalPageState extends State<JournalPage> {
                                   child: Text(
                                     'Close',
                                     style: TextStyle(
-                                      fontFamily: 'AppleGaramond',
+                                      fontFamily: 'Sans',
                                       fontSize: 16,
                                       color: Colors.black,
                                     ),

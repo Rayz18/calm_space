@@ -26,13 +26,13 @@ class CalmSpaceApp extends StatelessWidget {
                 print('Submitted title: $title, story: $story');
               },
             ),
-      
-        '/mood_tracking': (context) => MoodTrackingPage(moodRecords: moodRecords),
+        '/mood_tracking': (context) =>
+            MoodTrackingPage(moodRecords: moodRecords),
         '/mood_calendar': (context) => MoodCalendarPage(
-          moodRecords: moodRecords,
-          selectedDate: DateTime.now(), // Provide a valid DateTime object here
-        ),
-        '/coping_tips': (context) => CopingTipsPage(),
+              moodRecords: moodRecords,
+              selectedDate:
+                  DateTime.now(), // Provide a valid DateTime object here
+            ),
       },
     );
   }
@@ -49,7 +49,14 @@ class SplashScreen extends StatelessWidget {
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Color(0xFFA3D1E6),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFFFADADD), // Pastel Pink
+              Color(0xF68AE5F5), // Pastel Blue
+            ],
+          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -87,8 +94,8 @@ class SplashScreen extends StatelessWidget {
                 '“It’s okay not to be okay. It’s okay to ask for help.\n "It’s okay to take a break”',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontFamily: 'AppleGaramond',
-                  fontSize: 16,
+                  fontFamily: 'Sans',
+                  fontSize: 14,
                   color: Colors.black54,
                 ),
               ),
@@ -104,7 +111,7 @@ class SplashScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF68BBE3),
+                backgroundColor: Color(0xDFDAB8F1),
                 padding: EdgeInsets.symmetric(horizontal: 80, vertical: 10),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -113,7 +120,7 @@ class SplashScreen extends StatelessWidget {
               child: Text(
                 'GET STARTED',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 19,
                   color: Colors.black,
                 ),
               ),
