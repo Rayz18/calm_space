@@ -1,8 +1,9 @@
 import 'package:calm_space/main.dart';
 import 'package:flutter/material.dart';
+import 'coping_tips.dart';
 import 'journal_page.dart';
 import 'mood_tracker_page.dart';
-import 'coping_tips.dart';
+import 'coping_tips_page.dart'; // Ensure you import the coping tips page
 
 class HomePage extends StatelessWidget {
   @override
@@ -20,9 +21,9 @@ class HomePage extends StatelessWidget {
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => CalmSpaceApp()),
-                      );
+              context,
+              MaterialPageRoute(builder: (context) => CalmSpaceApp()),
+            );
           },
         ),
         centerTitle: true,
@@ -82,7 +83,11 @@ class HomePage extends StatelessWidget {
                       text: 'Coping Tips',
                       color: Color(0xDFDAB8F1),
                       onPressed: () {
-                        // Add navigation to Coping Tips page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CopingTipsPage()),
+                        );
                       },
                     ),
                   ],
