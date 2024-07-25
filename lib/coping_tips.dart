@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'deep_breathing_exercise.dart';
+import 'mindfulness_meditation.dart';
 
 class CopingTipsPage extends StatelessWidget {
   @override
@@ -38,6 +39,7 @@ class Home extends StatelessWidget {
             EmotionalSelfControlPage(),
             ConcentrationTipsPage(),
             DeepBreathingExercisePage(),
+            MindfulnessMeditationPage(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -56,6 +58,8 @@ class Home extends StatelessWidget {
                 label: 'Concentration Tips'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.air), label: 'Deep Breathing'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.air_rounded), label: 'Mindfulness Meditation'),
           ],
           onTap: (index) {
             // Implement navigation logic if necessary
