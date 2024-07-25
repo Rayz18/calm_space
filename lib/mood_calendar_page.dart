@@ -1,5 +1,5 @@
-import 'package:calm_space/mood_tracker_page.dart';
 import 'package:flutter/material.dart';
+import 'mood_tracker_page.dart';
 
 class MoodCalendarPage extends StatefulWidget {
   final DateTime selectedDate;
@@ -48,30 +48,39 @@ class _MoodCalendarPageState extends State<MoodCalendarPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_getFormattedMonthYear(_displayedMonth)),
+        backgroundColor: Colors.purple[100], // Pastel purple color
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    MoodTrackingPage(moodRecords: widget.moodRecords),
-              ),
-            );
+            Navigator.pop(context); // Navigate back to previous screen
           },
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              _buildMonthSelector(),
-              SizedBox(height: 20),
-              _buildCalendar(),
-              SizedBox(height: 20),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFFFFC0CB), // Pastel pink
+              Color(0xFFADD8E6), // Pastel blue
+              Color(0xFFDDA0DD), // Pastel purple
             ],
+            stops: [0.0, 0.5, 1.0],
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                _buildMonthSelector(),
+                SizedBox(height: 20),
+                _buildCalendar(),
+                SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),

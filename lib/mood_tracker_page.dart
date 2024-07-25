@@ -81,7 +81,13 @@ class _MoodTrackingPageState extends State<MoodTrackingPage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Mood Tracking'),
+          title: Text(
+            'Mood Tracking',
+            style: TextStyle(
+              fontFamily: 'Sans',
+              fontSize: 18,
+            ),
+          ),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
@@ -107,54 +113,69 @@ class _MoodTrackingPageState extends State<MoodTrackingPage> {
               },
             ),
           ],
+          backgroundColor:
+              Colors.purple[100], // Set AppBar background color to pastel pink
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 30.0),
-                  child: Text(
-                    'HOW WAS YOUR DAY?',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.pink[100]!,
+                Colors.blue[100]!,
+                Colors.purple[100]!
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 30.0),
+                    child: Text(
+                      'HOW WAS YOUR DAY?',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton.icon(
-                      onPressed: () => _selectDate(context),
-                      icon: Icon(Icons.calendar_today),
-                      label: Text('${selectedDate.toLocal()}'.split(' ')[0]),
-                    ),
-                    SizedBox(width: 10),
-                    ElevatedButton.icon(
-                      onPressed: () => _selectTime(context),
-                      icon: Icon(Icons.access_time),
-                      label: Text(selectedTime.format(context)),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 25),
-                Wrap(
-                  spacing: 15,
-                  runSpacing: 15,
-                  alignment: WrapAlignment.center,
-                  children: moods.entries.map((entry) {
-                    return _buildMoodIcon(context, entry.value, entry.key);
-                  }).toList(),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _saveMood,
-                  child: Text('Save'),
-                ),
-              ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () => _selectDate(context),
+                        icon: Icon(Icons.calendar_today),
+                        label: Text('${selectedDate.toLocal()}'.split(' ')[0]),
+                      ),
+                      SizedBox(width: 10),
+                      ElevatedButton.icon(
+                        onPressed: () => _selectTime(context),
+                        icon: Icon(Icons.access_time),
+                        label: Text(selectedTime.format(context)),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 25),
+                  Wrap(
+                    spacing: 15,
+                    runSpacing: 15,
+                    alignment: WrapAlignment.center,
+                    children: moods.entries.map((entry) {
+                      return _buildMoodIcon(context, entry.value, entry.key);
+                    }).toList(),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: _saveMood,
+                    child: Text('Save'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
