@@ -1,4 +1,3 @@
-import 'package:calm_space/coping_tips.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'journal_page.dart';
@@ -95,7 +94,7 @@ class SplashScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Sans',
-                  fontSize: 14,
+                  fontSize: 13,
                   color: Colors.black54,
                 ),
               ),

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'coping_tips.dart';
 import 'journal_page.dart';
 import 'mood_tracker_page.dart';
-import 'coping_tips_page.dart'; // Ensure you import the coping tips page
 
 class HomePage extends StatelessWidget {
   @override
