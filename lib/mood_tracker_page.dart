@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home_page.dart';
 import 'mood_calendar_page.dart';
 
 class MoodTrackingPage extends StatefulWidget {
@@ -54,79 +55,107 @@ class _MoodTrackingPageState extends State<MoodTrackingPage> {
   }
 
   void _saveMood() {
-    if (selectedMood != null) {
-      setState(() {
-        widget.moodRecords[selectedDate] = selectedMood;
-      });
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => MoodCalendarPage(
-            moodRecords: widget.moodRecords,
-            selectedDate: DateTime.now(),
-          ),
+    setState(() {
+      widget.moodRecords[selectedDate] = selectedMood;
+    });
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MoodCalendarPage(
+          moodRecords: widget.moodRecords,
+          selectedDate: DateTime.now(),
         ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please select a mood')),
-      );
-    }
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Mood Tracking'),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30.0),
-                child: Text(
-                  'HOW WAS YOUR DAY?',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Mood Tracking'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            },
+          ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.calendar_today),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MoodCalendarPage(
+                      moodRecords: widget.moodRecords,
+                      selectedDate: DateTime.now(),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30.0),
+                  child: Text(
+                    'HOW WAS YOUR DAY?',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton.icon(
-                    onPressed: () => _selectDate(context),
-                    icon: Icon(Icons.calendar_today),
-                    label: Text('${selectedDate.toLocal()}'.split(' ')[0]),
-                  ),
-                  SizedBox(width: 10),
-                  ElevatedButton.icon(
-                    onPressed: () => _selectTime(context),
-                    icon: Icon(Icons.access_time),
-                    label: Text(selectedTime.format(context)),
-                  ),
-                ],
-              ),
-              SizedBox(height: 25),
-              Wrap(
-                spacing: 15,
-                runSpacing: 15,
-                alignment: WrapAlignment.center,
-                children: moods.entries.map((entry) {
-                  return _buildMoodIcon(context, entry.value, entry.key);
-                }).toList(),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _saveMood,
-                child: Text('Save'),
-              ),
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () => _selectDate(context),
+                      icon: Icon(Icons.calendar_today),
+                      label: Text('${selectedDate.toLocal()}'.split(' ')[0]),
+                    ),
+                    SizedBox(width: 10),
+                    ElevatedButton.icon(
+                      onPressed: () => _selectTime(context),
+                      icon: Icon(Icons.access_time),
+                      label: Text(selectedTime.format(context)),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 25),
+                Wrap(
+                  spacing: 15,
+                  runSpacing: 15,
+                  alignment: WrapAlignment.center,
+                  children: moods.entries.map((entry) {
+                    return _buildMoodIcon(context, entry.value, entry.key);
+                  }).toList(),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: _saveMood,
+                  child: Text('Save'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,7 +1,6 @@
 import 'package:calm_space/mood_tracker_page.dart';
 import 'package:flutter/material.dart';
 
-
 class MoodCalendarPage extends StatefulWidget {
   final DateTime selectedDate;
   final Map<DateTime, String> moodRecords;
@@ -19,13 +18,29 @@ class _MoodCalendarPageState extends State<MoodCalendarPage> {
   @override
   void initState() {
     super.initState();
-    _displayedMonth = DateTime(widget.selectedDate.year, widget.selectedDate.month);
+    _displayedMonth =
+        DateTime(widget.selectedDate.year, widget.selectedDate.month);
   }
 
   @override
   void didUpdateWidget(covariant MoodCalendarPage oldWidget) {
     super.didUpdateWidget(oldWidget);
-    _displayedMonth = DateTime(widget.selectedDate.year, widget.selectedDate.month);
+    _displayedMonth =
+        DateTime(widget.selectedDate.year, widget.selectedDate.month);
+  }
+
+  void _editMood(DateTime date) async {
+    String? newMood = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MoodTrackingPage(moodRecords: widget.moodRecords),
+      ),
+    );
+    if (newMood != null) {
+      setState(() {
+        widget.moodRecords[date] = newMood;
+      });
+    }
   }
 
   @override
@@ -33,6 +48,18 @@ class _MoodCalendarPageState extends State<MoodCalendarPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_getFormattedMonthYear(_displayedMonth)),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    MoodTrackingPage(moodRecords: widget.moodRecords),
+              ),
+            );
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -44,17 +71,6 @@ class _MoodCalendarPageState extends State<MoodCalendarPage> {
               SizedBox(height: 20),
               _buildCalendar(),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MoodTrackingPage(moodRecords: widget.moodRecords),
-                    ),
-                  );
-                },
-                child: Text('Edit'),
-              ),
             ],
           ),
         ),
@@ -105,7 +121,8 @@ class _MoodCalendarPageState extends State<MoodCalendarPage> {
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             setState(() {
-              _displayedMonth = DateTime(_displayedMonth.year, _displayedMonth.month - 1);
+              _displayedMonth =
+                  DateTime(_displayedMonth.year, _displayedMonth.month - 1);
             });
           },
         ),
@@ -117,7 +134,8 @@ class _MoodCalendarPageState extends State<MoodCalendarPage> {
           icon: Icon(Icons.arrow_forward),
           onPressed: () {
             setState(() {
-              _displayedMonth = DateTime(_displayedMonth.year, _displayedMonth.month + 1);
+              _displayedMonth =
+                  DateTime(_displayedMonth.year, _displayedMonth.month + 1);
             });
           },
         ),
@@ -126,8 +144,10 @@ class _MoodCalendarPageState extends State<MoodCalendarPage> {
   }
 
   Widget _buildCalendar() {
-    int daysInMonth = DateTime(_displayedMonth.year, _displayedMonth.month + 1, 0).day;
-    int startingWeekday = DateTime(_displayedMonth.year, _displayedMonth.month, 1).weekday;
+    int daysInMonth =
+        DateTime(_displayedMonth.year, _displayedMonth.month + 1, 0).day;
+    int startingWeekday =
+        DateTime(_displayedMonth.year, _displayedMonth.month, 1).weekday;
 
     return Table(
       // Removing the border property makes the table lines invisible
@@ -136,7 +156,16 @@ class _MoodCalendarPageState extends State<MoodCalendarPage> {
           children: List.generate(7, (index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Center(child: Text(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][index])),
+              child: Center(
+                  child: Text([
+                'Sun',
+                'Mon',
+                'Tue',
+                'Wed',
+                'Thu',
+                'Fri',
+                'Sat'
+              ][index])),
             );
           }),
         ),
@@ -151,35 +180,39 @@ class _MoodCalendarPageState extends State<MoodCalendarPage> {
 
     for (int i = 0; i < 7; i++) {
       int day = (week * 7) + i + 1 - startingWeekday;
-      DateTime date = DateTime(_displayedMonth.year, _displayedMonth.month, day);
+      DateTime date =
+          DateTime(_displayedMonth.year, _displayedMonth.month, day);
 
       if (day > 0 && day <= daysInMonth) {
         String? mood = widget.moodRecords[date];
         widgets.add(
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                mood != null
-                    ? _buildMoodEmoji(mood)
-                    : Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          shape: BoxShape.circle,
+          GestureDetector(
+            onTap: () => _editMood(date),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  mood != null
+                      ? _buildMoodEmoji(mood)
+                      : Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            shape: BoxShape.circle,
+                          ),
                         ),
-                      ),
-                SizedBox(height: 4),
-                Text(
-                  '$day',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
+                  SizedBox(height: 4),
+                  Text(
+                    '$day',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );
@@ -239,15 +272,4 @@ class _MoodCalendarPageState extends State<MoodCalendarPage> {
       ),
     );
   }
-
- void _saveMood() {
-  if (selectedMood != null) {
-    setState(() {
-      widget.moodRecords[widget.selectedDate] = selectedMood!;
-    });
-    Navigator.pop(context); // Pop back to MoodTrackingPage
-  }
 }
-}
-
-
