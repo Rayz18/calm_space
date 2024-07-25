@@ -56,27 +56,33 @@ class _JournalPageState extends State<JournalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Journaling',
-          style: TextStyle(
-            fontFamily: 'Sans',
-            fontSize: 19,
+          title: Text(
+            'Journaling',
+            style: TextStyle(
+              fontFamily: 'Sans',
+              fontSize: 19,
+            ),
           ),
-        ),
-        centerTitle: true,
-        backgroundColor: Color(0xFFA3D1E6), // Light blue background color
-      ),
+          centerTitle: true,
+          backgroundColor: Color(0xEB98E4F0)),
       body: Container(
         decoration: BoxDecoration(
-          color: Color(0xFFA3D1E6), // Light blue background color
+          gradient: RadialGradient(
+            center: Alignment.center,
+            radius: 1.50,
+            colors: [
+              Color(0xFFFADADD), // Pastel Pink
+              Color(0xF68AE5F5), // Pastel Blue
+            ],
+          ),
         ),
         child: _stories.isEmpty
             ? Center(
                 child: Text(
-                  'No Available Story yet',
+                  'No available story yet',
                   style: TextStyle(
                     fontFamily: 'Sans',
-                    fontSize: 18,
+                    fontSize: 17,
                     color: Colors.black,
                   ),
                 ),
@@ -99,7 +105,7 @@ class _JournalPageState extends State<JournalPage> {
                         _stories[index]['date'] ?? '',
                         style: TextStyle(
                           fontFamily: 'Sans',
-                          fontSize: 14,
+                          fontSize: 9,
                           color: Colors.grey,
                         ),
                       ),
@@ -134,7 +140,7 @@ class _JournalPageState extends State<JournalPage> {
                                     'Close',
                                     style: TextStyle(
                                       fontFamily: 'Sans',
-                                      fontSize: 16,
+                                      fontSize: 17,
                                       color: Colors.black,
                                     ),
                                   ),

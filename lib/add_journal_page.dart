@@ -16,13 +16,13 @@ class AddJournalPage extends StatelessWidget {
           'Add New Story',
           style: TextStyle(
             fontFamily: 'Sans',
-            fontSize: 19,
+            fontSize: 18,
           ),
         ),
-        backgroundColor: Color(0xFFA3D1E6),
+        backgroundColor: Color(0xEBBAEAF1),
       ),
       body: Container(
-        color: Color(0xFFA3D1E6),
+        color: Color(0xEBBAEAF1),
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
@@ -61,7 +61,7 @@ class AddJournalPage extends StatelessWidget {
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF1A73E8),
+                backgroundColor: Color.fromARGB(223, 198, 173, 214),
               ),
               child: Text(
                 'Submit',
