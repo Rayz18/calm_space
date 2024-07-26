@@ -52,7 +52,12 @@ class _MoodCalendarPageState extends State<MoodCalendarPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Navigate back to previous screen
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      MoodTrackingPage(moodRecords: widget.moodRecords)),
+            );
           },
         ),
       ),
