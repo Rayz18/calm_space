@@ -62,6 +62,8 @@ class _MoodCalendarPageState extends State<MoodCalendarPage> {
         ),
       ),
       body: Container(
+        height: double.infinity,
+        width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -164,22 +166,16 @@ class _MoodCalendarPageState extends State<MoodCalendarPage> {
         DateTime(_displayedMonth.year, _displayedMonth.month, 1).weekday;
 
     return Table(
-      // Removing the border property makes the table lines invisible
       children: [
         TableRow(
           children: List.generate(7, (index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
-                  child: Text([
-                'Sun',
-                'Mon',
-                'Tue',
-                'Wed',
-                'Thu',
-                'Fri',
-                'Sat'
-              ][index])),
+                child: Text(
+                  ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][index],
+                ),
+              ),
             );
           }),
         ),

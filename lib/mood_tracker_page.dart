@@ -35,10 +35,11 @@ class _MoodTrackingPageState extends State<MoodTrackingPage> {
       firstDate: DateTime(2000),
       lastDate: DateTime(2101),
     );
-    if (picked != null && picked != selectedDate)
+    if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
       });
+    }
   }
 
   Future<void> _selectTime(BuildContext context) async {
@@ -46,24 +47,18 @@ class _MoodTrackingPageState extends State<MoodTrackingPage> {
       context: context,
       initialTime: selectedTime,
     );
-    if (picked != null && picked != selectedTime)
+    if (picked != null && picked != selectedTime) {
       setState(() {
         selectedTime = picked;
       });
+    }
   }
 
   void _saveMood() {
-    DateTime dateTime = DateTime(
-      selectedDate.year,
-      selectedDate.month,
-      selectedDate.day,
-      selectedTime.hour,
-      selectedTime.minute,
-    );
     setState(() {
-      widget.moodRecords[dateTime] = selectedMood;
+      widget.moodRecords[selectedDate] = selectedMood;
     });
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) => MoodCalendarPage(
@@ -118,70 +113,104 @@ class _MoodTrackingPageState extends State<MoodTrackingPage> {
               },
             ),
           ],
-          backgroundColor: Colors.purple[100], // Pastel purple color
+          backgroundColor:
+              Colors.purple[100], // Set AppBar background color to pastel pink
         ),
         body: Container(
+          height: double.infinity,
+          width: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
               colors: [
-                Color(0xFFFFC0CB), // Pastel pink
-                Color(0xFFADD8E6), // Pastel blue
-                Color(0xFFDDA0DD), // Pastel purple
+                Colors.pink[100]!,
+                Colors.blue[100]!,
+                Colors.purple[100]!
               ],
-              stops: [0.0, 0.5, 1.0],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(height: 20),
-                Text(
-                  "Track Your Mood",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 30.0),
+                    child: Text(
+                      'HOW WAS YOUR DAY?',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () => _selectDate(context),
-                  child: Text(
-                    "Select date: ${selectedDate.toLocal()}".split(' ')[0],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () => _selectDate(context),
+                        icon: Icon(Icons.calendar_today),
+                        label: Text('${selectedDate.toLocal()}'.split(' ')[0]),
+                      ),
+                      SizedBox(width: 10),
+                      ElevatedButton.icon(
+                        onPressed: () => _selectTime(context),
+                        icon: Icon(Icons.access_time),
+                        label: Text(selectedTime.format(context)),
+                      ),
+                    ],
                   ),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () => _selectTime(context),
-                  child: Text("Select time: ${selectedTime.format(context)}"),
-                ),
-                SizedBox(height: 20),
-                DropdownButton<String>(
-                  value: selectedMood,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      selectedMood = newValue!;
-                    });
-                  },
-                  items: moods.keys.map((String mood) {
-                    return DropdownMenuItem<String>(
-                      value: mood,
-                      child: Text(mood),
-                    );
-                  }).toList(),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _saveMood,
-                  child: Text("Save Mood"),
-                ),
-              ],
+                  SizedBox(height: 25),
+                  Wrap(
+                    spacing: 15,
+                    runSpacing: 15,
+                    alignment: WrapAlignment.center,
+                    children: moods.entries.map((entry) {
+                      return _buildMoodIcon(context, entry.value, entry.key);
+                    }).toList(),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: _saveMood,
+                    child: Text('Save'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildMoodIcon(BuildContext context, String iconPath, String label) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedMood = label;
+        });
+      },
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: selectedMood == label ? Colors.blue : Colors.transparent,
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: Image.asset(
+              iconPath,
+              height: 100,
+              width: 100,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(label),
+        ],
       ),
     );
   }
